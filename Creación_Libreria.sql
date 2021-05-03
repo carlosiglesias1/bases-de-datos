@@ -22,19 +22,19 @@ GO
 Create Table Editoriales (
 Cod_ed varchar (3) primary key,
 Nombre varchar (30) not null,
-Direcciï¿½n varchar (40) not null,
+Dirección varchar (40) not null,
 Localidad varchar (30) not null,
 Provincia varchar (30) not null,
 CP char (5) not null,
-Telï¿½fono char(9) not null
+Teléfono char(9) not null
 );
 Create Table Libros (
 Cod_lib char (3) primary key,
-Tï¿½tulo varchar (40) not null,
+Título varchar (40) not null,
 Autor varchar (30) not null,
 Precio smallmoney not null,
 Stock tinyint not null,
-Fecha_Ediciï¿½n date not null,
+Fecha_Edición date not null,
 Editorial varchar (3) references Editoriales(Cod_ed)
 on update cascade
 );
@@ -43,11 +43,11 @@ Cod_cli varchar (3) primary key,
 DNI char (9) unique not null,
 Nombre varchar (30) not null,
 Apellidos varchar(40) not null,
-Direcciï¿½n varchar (40) not null,
+Dirección varchar (40) not null,
 Localidad varchar (30) not null,
 Provincia varchar (30) not null,
 CP char (5) not null,
-Telï¿½fono char(9) not null
+Teléfono char(9) not null
 );
 Create Table Pedidos (
 Num_ped char (3) primary key,
