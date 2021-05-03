@@ -45,3 +45,53 @@ as
 go
 
 exec comprobarPreciosEdis[2];
+go
+--Rutina que permita modificar los precios de los
+--libros de una editorial
+if exists (select * from sysobjects
+			where name = 'modificarPrecios')
+		drop proc modificarPrecios;
+go
+
+create proc modificarPrecios (@Cod_ed char (3), @opcion char (4), @cantidad money)
+as
+	if @opcion = 'stup'
+		update Libros
+			set Precio += @cantidad
+			where Editorial = @Cod_ed
+	else if @opcion = 'stdown'
+		update Libros
+			set Precio -= @cantidad
+			where Editorial = @Cod_ed
+	else
+		print 'Algo ha ido mal'
+go
+
+exec modificarPrecios 2, stup, 5;
+go
+
+--reducir el precio de los libros en funcion del total  de ejemplares vendidos
+--en los ultimos 30 dias
+--Si se vendieron mas de 30 ejemplares, en un 2%
+--mas de 20, un 5%
+-- los demas un 10%
+if exists (select * from sysobjects
+			where name = 'updateInCaseSoldExemplars')
+		drop proc updateInCaseSoldExemplars;
+go
+
+create proc updateInCaseSoldExemplars
+as
+	declare @totalVendidosMes int;
+	select @totalVendidosMes = dbo.librosMes();
+	update Libros
+		set Precio *= case
+			when @totalVendidosMes > 30 then 0.98
+			when @totalVendidosMes between 20 and 30 then 0.95
+			else 0.9   
+		end
+go
+
+select dbo.librosMes();
+
+exec updateInCaseSoldExemplars;
