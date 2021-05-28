@@ -22,3 +22,13 @@ Funciones---------------ChuletasFunciones.sql
 Porcedimientos----------ChuletasProcedimientos.sql
 
 examenAnterior----------examenAnterior.sql
+
+//apunte: las sentencias having, despues del group by, devuelven resultados agrupados:
+    ejemplo:
+            select dni
+                from Clientes c inner join Cuentas cu on cu.Cliente=c.Dni
+                    where Provincia='A Coru�a'
+                    and Saldo > (select AVG(saldo) from Cuentas)
+                group by dni  --Aqui al agrupar hace que la funcion count cuente solo los campos agrupados, es decir, que si hay 3 cuentas del mismo dueño, me devolvera un 3
+                              --así para cada cuenta  
+                having count(codigo)>1
