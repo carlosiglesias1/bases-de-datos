@@ -123,14 +123,14 @@ as
 			when (select dbo.getNameEd(Editorial))= 'Rama' then 0.95
 			else 1
 		end
-		where Título like ('%SQL%');
+		where Titulo like ('%SQL%');
 go
 
 exec updateinCaseEd;
 go
---Mientras el precio minimo de los libros de una editorial no baje de 10€
---reducir el precio de sus libros en un 2%, si despues de la 1ª interacción 
---el precio medio baja de 25€, que pare
+--Mientras el precio minimo de los libros de una editorial no baje de 10ï¿½
+--reducir el precio de sus libros en un 2%, si despues de la 1ï¿½ interacciï¿½n 
+--el precio medio baja de 25ï¿½, que pare
 if exists(select * from sysobjects
 			where name = 'dropPriceEd')
 	drop proc dbo.dropPriceEd;
