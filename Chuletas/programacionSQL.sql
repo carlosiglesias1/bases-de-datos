@@ -1,15 +1,15 @@
 /* Condicionales:
 
 **IF
-	IF Condición
+	IF Condiciï¿½n
 		Sentecia
 	ELSE
 		Sentencia
-Cuando hay más de 1 sentecia a ejecutar,
+Cuando hay mï¿½s de 1 sentecia a ejecutar,
 el bloque de sentencias se escribe entre
 	BEGIN......END
 
-	IF Condición
+	IF Condiciï¿½n
 		BEGIN
 			Sentencia 1
 			Sentencia 2
@@ -38,7 +38,7 @@ else
 	select * from Libros;
 go
 
---Si hay más de 3 libros de anaya de precio > 50,
+--Si hay mï¿½s de 3 libros de anaya de precio > 50,
 --reducirles el precio un 10% a los que superan 
 --esa cifra
 declare @counter int
@@ -56,9 +56,9 @@ if (@counter > 3)
 else
 	select * from Libros;
 
---Si el precio medio de los libros supera los 50€
+--Si el precio medio de los libros supera los 50ï¿½
 --reducir un 10% y eliminar los que no se han vendido nunca
---y si supera los 30€, reducir un 5%
+--y si supera los 30ï¿½, reducir un 5%
 
 declare @avg smallmoney
 select @avg = avg(precio) from Libros;
@@ -81,7 +81,7 @@ else
 			select @avg as 'Precio medio';
 	end
 
---Si el precio medio de los libros de anaya supera en más de 15€
+--Si el precio medio de los libros de anaya supera en mï¿½s de 15ï¿½
 --el precio de rama, reducir el precio de los libros de anaya un 10%
 -- sino reducir un 5%
 
@@ -109,10 +109,10 @@ select * from Libros;
 select @precioAnaya as MediaAnaya, @precioRama as MediaRama;
 
 --Listar titulo y una columna que visualice la palabra o la frase
--- precio alto cuando el precio alto cuando el precio esta por encima de 100€
---precio medio si está por encima de 50€ y precio bajo por debajo de 50€
+-- precio alto cuando el precio alto cuando el precio esta por encima de 100ï¿½
+--precio medio si estï¿½ por encima de 50ï¿½ y precio bajo por debajo de 50ï¿½
 
-select Título, 'Tipo'= case 
+select Titulo, 'Tipo'= case 
 				when precio > 50 then 'Precio alto'
 				when precio > 30 then 'Precio medio'
 				else 'Precio bajo'
@@ -121,7 +121,7 @@ from Libros;
 
 
 --listar nombre y apellidos de los clientes y la columna categoria que mostrara
---1 si el cliente ha gastado más de 600€ en los últimos 30 días,
+--1 si el cliente ha gastado mï¿½s de 600ï¿½ en los ï¿½ltimos 30 dï¿½as,
 --2 si el gasto estubo entre 150 y 300
 --3 por debajo de esa cifra
 select nombre, apellidos, SUM(l.Precio*det.Num_ej) as 'precio total'
@@ -143,7 +143,7 @@ group by Nombre, Apellidos;
 go
 --Rebajar el precio de los libros
 --Si son de Anaya en un 10%
---Si son de Rama en un 8%, los demás en nun 5%
+--Si son de Rama en un 8%, los demï¿½s en nun 5%
 update Libros
 	set Precio = case
 		when nombre = 'Anaya' then Precio * 0.9
@@ -152,13 +152,13 @@ update Libros
 		end
 	from Libros l join Editoriales ed on ed.Cod_ed = l.Editorial; 
 go
---modificar el código postal de los clientes.
---Si son de A Coruña ponerles 15001,
+--modificar el cï¿½digo postal de los clientes.
+--Si son de A Coruï¿½a ponerles 15001,
 --de pontevedra 36001,
 --de Lugo 27001, de ourense 32001, al resto null
 update Clientes
 	set CP = case 
-		when Provincia = 'A Coruña' then '15001'
+		when Provincia = 'A Coruï¿½a' then '15001'
 		when Provincia = 'Pontevedra' then '36001'
 		when Provincia = 'Lugo' then '27001'
 		when Provincia = 'Ourense' then '32001'
@@ -170,7 +170,7 @@ go
 --precio superior a la media
 --Si tengo mas de 15 ejemplares en stock, en un 10%
 --si tengo entre 10 y 15 en un 8%
---Los demás no modificarlos
+--Los demï¿½s no modificarlos
 declare @avgprecio money;
 select @avgprecio = AVG(precio) from Libros;
 
@@ -185,16 +185,16 @@ update Libros
 							where Nombre = 'Anaya') and Precio> @avgprecio;
 go
 
---Nombre de las editoriales cuyo precio medio supera los 50€
+--Nombre de las editoriales cuyo precio medio supera los 50ï¿½
 select nombre 
 	from Editoriales ed join Libros l on l.Editorial = ed.Cod_ed
 	group by ed.Nombre
 	having SUM(l.precio)>50
 go
 
---reducir el precio de los libros vendidos en los ultimos 100 días
---si se vendieron ás de 10 ejemplares, un 10%
---si se vendieron más de 5 ejemplares, un 5%
+--reducir el precio de los libros vendidos en los ultimos 100 dï¿½as
+--si se vendieron ï¿½s de 10 ejemplares, un 10%
+--si se vendieron mï¿½s de 5 ejemplares, un 5%
 update Libros
 	set Precio *= case
 		when (select SUM(num_ej) from Detalle_pedidos group by Cod_lib) > 10 then 0.9

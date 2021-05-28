@@ -1,4 +1,4 @@
---Función que devuelva el total ingresado por una 
+--Funciï¿½n que devuelva el total ingresado por una 
 --editorial entre 2 fechas
 if exists(select * from sysobjects
 			where name = 'totalEditorial')
@@ -56,7 +56,7 @@ create function mayorQueMedia ()  returns table
 as
 		return 
 		(
-			select Título 
+			select Titulo 
 			from Libros
 				where Precio > dbo.media() 	
 		);
@@ -65,7 +65,7 @@ go
 select * from dbo.mayorQueMedia();
 go
 
---Editoriales de las que he tenido más ingresos en el dia de hoy que una concreta
+--Editoriales de las que he tenido mï¿½s ingresos en el dia de hoy que una concreta
 if exists (select * from sysobjects
 			where name = 'comprobarIngresosMayores')
 	drop function dbo.comprobarIngresosMayores;
