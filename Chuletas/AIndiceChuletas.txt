@@ -1,22 +1,24 @@
-like----------------ChuletasLike.sql
+like--------------------ChuletasLike.sql
 
-alter table---------Ejemplos_de_Alter.sql
+alter table-------------Ejemplos_de_Alter.sql
 
-delete--------------delete.sql
+delete------------------delete.sql
 
-condicionales-------programacion.sql
-                    ChuletasProcedimientos.sql
+condicionales(case/if)--programacion.sql
+                        ChuletasProcedimientos.sql
 
-variables-----------empezanod_a_crear_variables.sql
-                    ChuletasProcedimientos.sql
-                    ChuletasFunciones.sql
-                    superChuletasFunciones.sql
-                    masFunciones.sql
+variables---------------empezanod_a_crear_variables.sql
+                        ChuletasProcedimientos.sql
+                        ChuletasFunciones.sql
+                        superChuletasFunciones.sql
+                        masFunciones.sql
 
-while--------------ChuletasProcedimientos.sql
+while/break-------------ChuletasProcedimientos.sql
 
-Funciones-----------ChuletasFunciones.sql
-                    masFunciones.sql
-                    superChuletasFunciones.sql
+Funciones---------------ChuletasFunciones.sql
+                        masFunciones.sql
+                        superChuletasFunciones.sql
 
-Porcedimientos------ChuletasProcedimientos.sql
+Porcedimientos----------ChuletasProcedimientos.sql
+
+examenAnterior----------examenAnterior.sql
