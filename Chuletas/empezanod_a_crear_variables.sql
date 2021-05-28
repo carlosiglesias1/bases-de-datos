@@ -4,19 +4,19 @@ declare @media money
 select @media=avg(Precio) from Libros
 select @media
 
-select Título
+select Titulo
 from Libros
 where Precio > @media;
 go
 
 declare @num smallint;
 set @num = 3;
-select título
+select titulo
 from Libros
 where Stock > @num;
 go
 
---guardar en variables locales el precio máximo, mínimo y medio de los libros y luego listarlos
+--guardar en variables locales el precio mï¿½ximo, mï¿½nimo y medio de los libros y luego listarlos
 
 declare @max smallmoney
 declare @min smallmoney
@@ -27,7 +27,7 @@ select @avg = AVG(precio) from Libros
 select @max as Maximo, @min as Minimo, @avg as Media;
 go
 
---guardar en un a variable local una fecha y listar el nº de todos los pedidos 
+--guardar en un a variable local una fecha y listar el nï¿½ de todos los pedidos 
 --realizados con posterioridad a la misma
 declare @mydate date
 set @mydate = '2020-09-20'
@@ -37,7 +37,7 @@ where Fecha > @mydate;
 go
 
 
---guardar en 2 variables el nº de libros
+--guardar en 2 variables el nï¿½ de libros
 -- de Anaya y el precio medio de los mismos.
 --Listar nombre de las editoriales de las que tengo mas libros que 
 --Anaya y cuyo precio medio supere al de Anaya
@@ -56,19 +56,19 @@ select e.Nombre
 	group by e.Nombre
 	having COUNT(l.Cod_lib) > @libros and AVG(l.precio) > @price;
 
---Guardar en una variable un nº y en otra el precio
+--Guardar en una variable un nï¿½ y en otra el precio
 --medio de los libros.
 --Listar titulo de los libros de precio superior a la media de los que he 
---vendido mas ejemplares que el nº guardado, en los últimos 7 dias
+--vendido mas ejemplares que el nï¿½ guardado, en los ï¿½ltimos 7 dias
 declare @dat smallint, @p_medio money
 set @dat = 2
 select @p_medio = avg (precio) from Libros
-select Título
+select Titulo
 from Libros l
 	inner  join Detalle_pedidos dp on l.Cod_lib = dp.Cod_lib
 	inner join Pedidos p on p.Num_ped = dp.Num_ped
 	where Precio > @p_medio and Fecha >= GETDATE()-7
-	group by Título
+	group by Titulo
 	having sum(num_ej)>@dat;
 go
 
