@@ -233,3 +233,4 @@ go
 select * from Pedidos;
 go
 select total from Pedidos;
+go
