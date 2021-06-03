@@ -6,13 +6,13 @@ GO
 CREATE DATABASE Libreria
 ON
 ( NAME = libreriadat,
-    FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\libreriadat.mdf',
+    FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\libreriadat.mdf',
     SIZE = 10,
     MAXSIZE = unlimited,
     FILEGROWTH = 5 )
 LOG ON
 ( NAME = librerialog,
-    FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\librerialog.ldf',
+    FILENAME = 'C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA\librerialog.ldf',
     SIZE = 5MB,
     MAXSIZE = unlimited,
     FILEGROWTH = 5MB ) ;
